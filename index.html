@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Light Up the Festival — Happy Diwali</title>
+  <meta name="theme-color" content="#050830">
+  <meta property="og:title" content="Light Up the Festival — Happy Diwali">
+  <meta property="og:description" content="Clap to light a golden diya.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%94%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <canvas id="art" role="img" aria-label="A golden diya lighting up, one stage at a time"></canvas>
+
+  <div id="hud" aria-live="polite">
+    <p id="snd">Sound: not started</p>
+    <p class="stage"><b id="stageN">Stage 0/5</b> <i id="stageName">Waiting for the first clap</i></p>
+    <div class="track"><div id="fill"></div></div>
+    <div class="meter" id="meterWrap" hidden><div id="lvl"></div></div>
+  </div>
+
+  <div id="tools" hidden>
+    <button id="next" type="button" aria-label="Next stage">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    </button>
+    <button id="mute" type="button" aria-label="Mute music">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path class="on" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z" fill="currentColor"/>
+        <path class="off" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.4-2.4-1.4-1.4-2.4 2.4-2.4-2.4-1.4 1.4 2.4 2.4-2.4 2.4 1.4 1.4 2.4-2.4 2.4 2.4 1.4-1.4-2.4-2.4z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <p id="hint" hidden>Clap, or tap anywhere, to light the next stage</p>
+  <button id="replay" type="button" hidden>Light it again</button>
+
+  <main id="start">
+    <div class="card">
+      <h1><span>Light up the</span><span>Festival</span></h1>
+      <p class="sub">Make sound to reveal the magic of Diwali!</p>
+      <button id="go" type="button">Start celebration</button>
+      <button id="nomic" type="button" class="link">Continue without microphone</button>
+      <p id="note" role="status"></p>
+    </div>
+  </main>
+
+  <audio id="bgm" src="assets/music.mp3" loop preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
